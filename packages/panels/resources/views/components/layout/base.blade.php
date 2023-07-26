@@ -78,6 +78,16 @@
             </script>
         @endif
 
+        @if (filament()->hasLightModeForced())
+            {{-- should be placed after initial setup --}}
+            <script>
+                document.addEventListener('alpine:init', () => {
+                    localStorage.setItem('theme', 'light');
+                    document.documentElement.classList.remove('dark')
+                })
+            </script>
+        @endif
+
         {{ \Filament\Support\Facades\FilamentView::renderHook('head.end') }}
     </head>
 
